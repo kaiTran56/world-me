@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +17,7 @@ import com.tranquyet.domain.CurrentWeatherInfor;
 import com.tranquyet.domain.ForecastWeatherInfor;
 import com.tranquyet.dto.SearchCondition;
 import com.tranquyet.service.StatusWeatherService;
+import com.tranquyet.service.impl.StatusWeatherServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,8 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/weather")
 @Slf4j
 public class WeatherApi {
-	@Autowired
-	private StatusWeatherService weatherService;
+
+	private StatusWeatherService weatherService = new StatusWeatherServiceImpl();
 
 	@PostMapping("/current")
 	public ResponseEntity<CurrentWeatherInfor> getCurrentWeather(@RequestBody @NotNull SearchCondition conditio) {
